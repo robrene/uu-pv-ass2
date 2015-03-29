@@ -93,8 +93,8 @@ The following numbers were obtained on a Macbook Pro (Late 2013 model) running o
 
 ### Extended algorithm
 
-| N  | `time ./pan -a` |
-|----|-----------------|
+| N  | `time ./pan -a` | Total actual memory usage |
+|----|-----------------|---------------------------|
 |  2 | | |
 |  3 | | |
 |  4 | | |

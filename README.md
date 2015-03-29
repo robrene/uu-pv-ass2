@@ -104,3 +104,9 @@ The following numbers were obtained on a Macbook Pro (Late 2013 model) running o
 | 10 | 71.58s | 318.735 MB |
 | 11 | 283.19s | 728.815 MB |
 | 12 | 1072.62s | 2528.275 MB |
+
+### Conclusion
+
+Calculating the execution tree of all states becomes exponentially harder for increasing *N*. Even for this relatively simple model, verifying the small specification for this algorithm quickly becomes too expensive for large values of *N*.
+
+Memory requirements seem grow at a much slower pace, with a lower bound of 147.073 MB for most values of *N*. However, the growth still appears to be exponential. Perhaps for more complicated algorithms, the memory bounds will play a bigger role. Using the simple optimization flags proved to be enough to run the verification on a commodity consumer laptop, with room to spare.

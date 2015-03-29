@@ -47,7 +47,7 @@ This extension gives each process a non-deterministic non-zero chance to become 
 
 1. Every process *i* sends its own ID to its successor in the ring as a "round-one" message.
 
-2. Round 1: When a process *i* with ID *x<sub>i</sub>* receives an ID *x'* as a "round-one" message from its predecessor, it does the following:
+2. **Round 1:** When a process *i* with ID *x<sub>i</sub>* receives an ID *x'* as a "round-one" message from its predecessor, it does the following:
 
   (a) If *x'* < *x<sub>i</sub>*, it non-deterministically chooses to either discard *x'*, or to forward it to its successor.
 
@@ -57,7 +57,7 @@ This extension gives each process a non-deterministic non-zero chance to become 
 
 3. When a process *i* receives an ID *x'* as a "round-two" message from its predecessor, it forwards it to its successor as a "round-two" message and subsequently goes to round two. It also stores *x'* as a possible leader *x''*.
 
-4. Round 2: When a process *i* with a stored possible leader ID *x<sub>s</sub>* receives an ID *x'* as a "round-two" message from its predecessor, it does the following:
+4. **Round 2:** When a process *i* with a stored possible leader ID *x<sub>s</sub>* receives an ID *x'* as a "round-two" message from its predecessor, it does the following:
 
   (a) If *x'* < *x<sub>s</sub>*, it forwards *x'* to its successor. It also stores *x'* as the new possible leader.
 

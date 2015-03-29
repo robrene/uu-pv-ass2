@@ -49,16 +49,19 @@ This extension gives each process a non-deterministic non-zero chance to become 
 
 Round 1:
 
-2i. When a process *i* with ID *x<sub>i</sub>* receives an ID *x'* as a "round-one" message from its predecessor, it does the following:
+2. When a process *i* with ID *x<sub>i</sub>* receives an ID *x'* as a "round-one" message from its predecessor, it does the following:
+
   (a) If *x'* < *x<sub>i</sub>*, it non-deterministically chooses to either discard *x'*, or to forward it to its successor.
+
   (b) If *x'* > *x<sub>i</sub>*, it forwards *x'* to its successor.
+
   (c) If *x'* = *x<sub>i</sub>*, the process becomes a nominee for leadership, and sends its own ID to its successor in the ring as a "round-two" message and subsequently goes to round two. It also stores its ID as a possible leader *x''*.
 
-2ii. When a process *i* receives an ID *x'* as a "round-two" message from its predecessor, it forwards it to its successor as a "round-two" message and subsequently goes to round two. It also stores *x'* as a possible leader *x''*.
+3. When a process *i* receives an ID *x'* as a "round-two" message from its predecessor, it forwards it to its successor as a "round-two" message and subsequently goes to round two. It also stores *x'* as a possible leader *x''*.
 
 Round 2:
 
-3. When a process *i* with a stored possible leader ID *x''* receives an ID *x'* as a "round-two" message from its predecessor, it does the following:
+4. When a process *i* with a stored possible leader ID *x''* receives an ID *x'* as a "round-two" message from its predecessor, it does the following:
 
   (a) If *x'* < *x''*, it forwards *x''* to its successor. It also stores *x''* as the new possible leader.
 

@@ -61,13 +61,13 @@ Round 1:
 
 Round 2:
 
-4. When a process *i* with a stored possible leader ID *x''* receives an ID *x'* as a "round-two" message from its predecessor, it does the following:
+4. When a process *i* with a stored possible leader ID *x<sub>s</sub>* receives an ID *x'* as a "round-two" message from its predecessor, it does the following:
 
-  (a) If *x'* < *x''*, it forwards *x''* to its successor. It also stores *x''* as the new possible leader.
+  (a) If *x'* < *x<sub>s</sub>*, it forwards *x<sub>s</sub>* to its successor. It also stores *x<sub>s</sub>* as the new possible leader.
 
-  (b) If *x'* > *x''*, it discards *x'*.
+  (b) If *x'* > *x<sub>s</sub>*, it discards *x'*.
 
-  (c) If *x'* = *x''*, the process wins and declares itself as the leader.
+  (c) If *x'* = *x<sub>s</sub>*, the process wins and declares itself as the leader.
 
 ### Results
 

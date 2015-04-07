@@ -19,7 +19,7 @@ The second part of the specification is to check that when the algorithm termina
 First, we compile the verifier:
 
     $ spin -a leader.pml
-    $ gcc -DCOLLAPSE -DVECTORSZ=100000 pan.c -o pan
+    $ gcc -DCOLLAPSE -DVECTORSZ=100000 -O2 pan.c -o pan
 
 The `COLLAPSE` option performs a sound compression of state vectors to improve memory usage. The `VECTORSZ` option allows for bigger state vectors, which are required for the verifier to work. Now we can run the verifier as such:
 
@@ -80,33 +80,33 @@ The following numbers were obtained on a Macbook Pro (Late 2013 model) running o
 |  2 | 0.08s | 147.073 MB |
 |  3 | 0.08s | 147.073 MB |
 |  4 | 0.09s | 147.073 MB |
-|  5 | 0.12s | 147.073 MB |
-|  6 | 0.13s | 147.073 MB |
-|  7 | 0.22s | 147.073 MB |
-|  8 | 0.64s | 147.073 MB |
-|  9 | 1.90s | 147.073 MB |
-| 10 | 6.97s | 156.610 MB |
-| 11 | 24.17s | 175.684 MB |
-| 12 | 81.81s | 242.441 MB |
+|  5 | 0.09s | 147.073 MB |
+|  6 | 0.10s | 147.073 MB |
+|  7 | 0.15s | 147.073 MB |
+|  8 | 0.28s | 147.073 MB |
+|  9 | 0.75s | 147.073 MB |
+| 10 | 2.50s | 156.610 MB |
+| 11 | 8.57s | 175.684 MB |
+| 12 | 29.68s | 242.441 MB |
 
 ### Extended algorithm
 
 | N  | `time ./pan -a` | Total actual memory usage |
 |----|-----------------|---------------------------|
-|  2 | 0.08s | 147.073 MB |
+|  2 | 0.09s | 147.073 MB |
 |  3 | 0.09s | 147.073 MB |
 |  4 | 0.09s | 147.073 MB |
-|  5 | 0.15s | 147.073 MB |
-|  6 | 0.38s | 147.073 MB |
-|  7 | 1.28s | 147.073 MB |
-|  8 | 4.85s | 156.610 MB |
-|  9 | 18.58s | 194.757 MB |
-| 10 | 71.58s | 318.735 MB |
-| 11 | 283.19s | 728.815 MB |
-| 12 | 1072.62s | 2528.275 MB |
+|  5 | 0.12s | 147.073 MB |
+|  6 | 0.19s | 147.073 MB |
+|  7 | 0.50s | 147.073 MB |
+|  8 | 1.84s | 156.610 MB |
+|  9 | 6.83s | 194.757 MB |
+| 10 | 26.93s | 318.735 MB |
+| 11 | 104.94s | 728.815 MB |
+| 12 | 415.61s | 2528.275 MB |
 
 ### Conclusion
 
 Calculating the execution tree of all states becomes exponentially harder for increasing *N*. Even for this relatively simple model, verifying the small specification for this algorithm quickly becomes too expensive for large values of *N*.
 
-Memory requirements seem grow at a much slower pace, with a lower bound of 147.073 MB for most values of *N*. However, the growth still appears to be exponential. Perhaps for more complicated algorithms, the memory bounds will play a bigger role. Using the simple optimization flags proved to be enough to run the verification on a commodity consumer laptop, with room to spare.
+Memory requirements seem stagnant at first, with a lower bound of 147.073 MB for most values of *N*. However, after a certain point, memory requirement growth explodes exponentially. Using the simple optimization flags proved to be enough to run the verification on a commodity consumer laptop, with room to spare. However, these requiremens will need to be kept in mind when evaluating more complicated models.
